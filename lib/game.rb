@@ -12,7 +12,8 @@ class Game
   end
 
   def play(params)
-    grid.change_field(params) unless grid.field_taken?(params)
+    return "This field is taken" if grid.field_taken?(params)
+    grid.change_field(params)
     raise "Game over! #{active_player.name} wins!" if grid.win?
     change_turn
   end
