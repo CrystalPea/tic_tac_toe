@@ -46,7 +46,7 @@ describe Game do
     allow(board).to receive(:field_exists?).with(params) { true }
     allow(board).to receive(:change_field).with(params)
     allow(board).to receive(:win?) { true }
-    expect { game.play(params) }.to raise_exception("Game over! player_1 wins!")
+    expect { game.play(params) }.to raise_error("Game over! player_1 wins!")
   end
 
   it "ends when board full" do
@@ -56,7 +56,7 @@ describe Game do
     allow(board).to receive(:change_field).with(params)
     allow(board).to receive(:win?) { false }
     allow(board).to receive(:full?) { true }
-    expect { game.play(params) }.to raise_exception("Game over, it's a draw!")
+    expect { game.play(params) }.to raise_error("Game over, it's a draw!")
   end
 
   it "does not allow values outside the board scope" do
