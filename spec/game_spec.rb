@@ -12,27 +12,24 @@ describe Game do
 
   it "players take turns until game is over" do
     params = {row: :a, column: 0, value: :x}
-    allow(player_1).to receive(:play).with("A", 0, "X").and_return(params)
     allow(grid).to receive(:field_taken?).with(params) { false }
     allow(grid).to receive(:change_field).with(params)
-    game.play("A", 0, "X")
+    game.play(params)
     expect(game.active_player).to eq player_2
   end
 
   it "lets active player take a field" do
     params = {row: :a, column: 0, value: :x}
-    allow(player_1).to receive(:play).with("A", 0, "X").and_return(params)
     allow(grid).to receive(:field_taken?).with(params) { false }
     expect(grid).to receive(:change_field).with(params)
-    game.play("A", 0, "X")
+    game.play(params)
   end
 
   it "doesn't allow player to take an already taken field" do
     params = {row: :a, column: 0, value: :x}
-    allow(player_1).to receive(:play).with("A", 0, "X").and_return(params)
     allow(grid).to receive(:field_taken?).with(params) { true }
     expect(grid).not_to receive(:change_field)
-    game.play("A", 0, "X")
+    game.play(params)
   end
 
 end

@@ -1,3 +1,6 @@
+require_relative "tictactoe_grid"
+require_relative "player"
+
 class Game
   attr_reader :player_1, :player_2, :active_player, :grid
 
@@ -8,8 +11,7 @@ class Game
     @grid = grid
   end
 
-  def play(row, column, value)
-    params = active_player.play(row, column, value)
+  def play(params)
     grid.change_field(params) unless grid.field_taken?(params)
     change_turn
   end
