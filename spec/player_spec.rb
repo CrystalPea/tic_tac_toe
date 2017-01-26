@@ -7,4 +7,12 @@ describe Player do
   it "has a name" do
     expect(player.name).to eq player_1
   end
+
+  it "can claim a field" do
+    expect(player.play("a", "0")).to eq({row: :a, column: 0})
+  end
+
+  it "cannot claim a taken field" do
+
+  end
 end

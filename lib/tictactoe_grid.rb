@@ -1,6 +1,12 @@
 class TicTacToeGrid
   attr_reader :grid
   def initialize
-    @grid = [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]]
+    @a = [nil, nil, nil]
+    @b = [nil, nil, nil]
+    @c = [nil, nil, nil]
+    @grid = [a, b, c]
   end
+
+  private
+  attr_accessor :a, :b, :c
 end
