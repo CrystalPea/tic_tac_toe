@@ -22,6 +22,11 @@ class TicTacToeGrid
     false
   end
 
+  def full?
+    grid.each {|row| return false if row.include?(nil) }
+    true
+  end
+
   private
   attr_accessor :a, :b, :c
 
