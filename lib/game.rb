@@ -16,8 +16,7 @@ class Game
     return "No cheating!" unless board.field_exists?(params)
     assign_value(params)
     board.change_field(params)
-    abort "Game over! #{active_player.name} wins!" if board.win?
-    abort "Game over, it's a draw!" if board.full?
+    game_over?
     change_turn
   end
 
@@ -36,5 +35,10 @@ class Game
       self.active_player = player_2
     else self.active_player = player_1
     end
+  end
+
+  def game_over?
+    abort "Game over! #{active_player.name} wins!" if board.win?
+    abort "Game over, it's a draw!" if board.full?
   end
 end
