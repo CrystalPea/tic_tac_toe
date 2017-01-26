@@ -11,13 +11,18 @@ describe Game do
   end
 
   it "players take turns until game is over" do
-    allow(player_1).to receive(:play)
-    game.play
+    params = {row: :a, column: 0, value: :x}
+    allow(player_1).to receive(:play).with("A", 0, "X").and_return(params)
+    allow(grid).to receive(:change_field).with(params)
+    game.play("A", 0, "X")
     expect(game.active_player).to eq player_2
   end
 
   it "lets active player take a field" do
-      allow(player_1).to receive(:play) { {row: :a, column: 0, value: :x} }
+    params = {row: :a, column: 0, value: :x}
+    allow(player_1).to receive(:play).with("A", 0, "X").and_return(params)
+    expect(grid).to receive(:change_field).with(params)
+    game.play("A", 0, "X")
   end
 
 end

@@ -8,8 +8,9 @@ class Game
     @grid = grid
   end
 
-  def play
-    active_player.play
+  def play(row, column, value)
+    params = active_player.play(row, column, value)
+    grid.change_field(params)
     change_turn
   end
 
