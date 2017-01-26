@@ -10,7 +10,7 @@ class Game
 
   def play(row, column, value)
     params = active_player.play(row, column, value)
-    grid.change_field(params)
+    grid.change_field(params) unless grid.field_taken?(params)
     change_turn
   end
 
