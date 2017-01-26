@@ -15,6 +15,11 @@ class TicTacToeGrid
     (self.send(params[:row]))[params[:column]] != nil
   end
 
+  def win?
+    grid.each {|row| return true if row.uniq.count == 1 && row[0] != nil }
+    false
+  end
+
   private
   attr_accessor :a, :b, :c
 end

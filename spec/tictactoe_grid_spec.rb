@@ -19,4 +19,17 @@ describe TicTacToeGrid do
     expect(tictactoe.field_taken?({row: :a, column: 0, value: :x})).to eq true
   end
 
+  describe "#win?" do
+    it "checks that game not won yet" do
+      expect(tictactoe.win?).to eq false
+    end
+
+    it "checks that game is won" do
+      n = 0
+      3.times { tictactoe.change_field({row: :a, column: n, value: :x}); n += 1 }
+        expect(tictactoe.win?).to eq true
+    end
+
+  end
+
 end
