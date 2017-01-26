@@ -27,7 +27,14 @@ describe TicTacToeGrid do
     it "checks that game is won" do
       n = 0
       3.times { tictactoe.change_field({row: :a, column: n, value: :x}); n += 1 }
-        expect(tictactoe.win?).to eq true
+      expect(tictactoe.win?).to eq true
+    end
+
+    it "checks for vertical wins" do
+      tictactoe.change_field({row: :b, column: 1, value: :x})
+      tictactoe.change_field({row: :a, column: 1, value: :x})
+      tictactoe.change_field({row: :c, column: 1, value: :x})
+      expect(tictactoe.win?).to eq true
     end
 
   end

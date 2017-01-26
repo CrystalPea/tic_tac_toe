@@ -17,6 +17,10 @@ class TicTacToeGrid
 
   def win?
     grid.each {|row| return true if row.uniq.count == 1 && row[0] != nil }
+    sideways = [[], [], []]
+    grid.each {|row| sideways[0] << row[0]; sideways[1] << row[1]; sideways[2] << row[2] }
+    sideways.each {|row| return true if row.uniq.count == 1 && row[0] != nil }
+
     false
   end
 
