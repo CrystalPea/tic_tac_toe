@@ -35,22 +35,26 @@ class Board
   attr_accessor :a, :b, :c
 
   def horizontal_win?
-    grid.each {|row| return true if row.uniq.count == 1 && row[0] != nil }
+    grid.each {|row| return true if winning_row?(row) }
     false
   end
 
   def vertical_win?
     sideways = [[], [], []]
     grid.each {|row| sideways[0] << row[0]; sideways[1] << row[1]; sideways[2] << row[2] }
-    sideways.each {|row| return true if row.uniq.count == 1 && row[0] != nil }
+    sideways.each {|row| return true if winning_row?(row) }
     false
   end
 
   def diagonal_win?
     axis_1 = [a[0], b[1], c[2]]
-    return true if axis_1.uniq.count == 1 && axis_1[0] != nil
+    return true if winning_row?(axis_1)
     axis_2 = [c[0], b[1], a[2]]
-    return true if axis_2.uniq.count == 1 && axis_2[0] != nil
+    return true if winning_row?(axis_2)
     false
+  end
+
+  def winning_row?(row)
+    row.uniq.count == 1 && row[0] != nil
   end
 end
