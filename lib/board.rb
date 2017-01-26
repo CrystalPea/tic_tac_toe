@@ -27,8 +27,8 @@ class Board
     true
   end
 
-  def no_such_field?(params)
-    (1..3).member?(params[:column])
+  def field_exists?(params)
+    (1..2).member?(params[:column])
   end
 
   private

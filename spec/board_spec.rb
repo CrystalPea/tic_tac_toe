@@ -62,6 +62,6 @@ describe Board do
   end
 
   it "checks for non-existent fields" do
-    expect(board.no_such_field?({row: :c, column: 3})).to eq true
+    expect(board.field_exists?({row: :c, column: 3})).to eq false
   end
 end

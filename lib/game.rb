@@ -13,7 +13,7 @@ class Game
 
   def play(params)
     return "This field is taken" if board.field_taken?(params)
-    return "No cheating!" if board.no_such_field?(params)
+    return "No cheating!" unless board.field_exists?(params)
     assign_value(params)
     board.change_field(params)
     raise "Game over! #{active_player.name} wins!" if board.win?
