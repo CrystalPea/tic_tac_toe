@@ -28,7 +28,7 @@ class Board
   end
 
   def field_exists?(params)
-    (1..2).member?(params[:column])
+    (0..2).member?(params[:column])
   end
 
   private
