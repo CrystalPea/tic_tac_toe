@@ -15,6 +15,7 @@ describe Game do
     allow(grid).to receive(:field_taken?).with(params) { false }
     allow(grid).to receive(:change_field).with(params)
     allow(grid).to receive(:win?) { false }
+    allow(grid).to receive(:full?) { false }
     game.play(params)
     expect(game.active_player).to eq player_2
   end
@@ -24,6 +25,7 @@ describe Game do
     allow(grid).to receive(:field_taken?).with(params) { false }
     expect(grid).to receive(:change_field).with(params)
     allow(grid).to receive(:win?) { false }
+    allow(grid).to receive(:full?) { false }
     game.play(params)
   end
 
@@ -32,6 +34,7 @@ describe Game do
     allow(grid).to receive(:field_taken?).with(params) { true }
     expect(grid).not_to receive(:change_field)
     allow(grid).to receive(:win?) { false }
+    allow(grid).to receive(:full?) { false }
     game.play(params)
   end
 
@@ -41,6 +44,15 @@ describe Game do
     allow(grid).to receive(:change_field).with(params)
     allow(grid).to receive(:win?) { true }
     expect { game.play(params) }.to raise_exception("Game over! player_1 wins!")
+  end
+
+  it "ends when grid full" do
+    params = {row: :a, column: 0, value: :x}
+    allow(grid).to receive(:field_taken?).with(params) { false }
+    allow(grid).to receive(:change_field).with(params)
+    allow(grid).to receive(:win?) { false }
+    allow(grid).to receive(:full?) { true }
+    expect { game.play(params) }.to raise_exception("Game over, it's a draw!")
   end
 
 end

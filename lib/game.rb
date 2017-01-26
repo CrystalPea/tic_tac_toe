@@ -16,6 +16,7 @@ class Game
     assign_value(params)
     grid.change_field(params)
     raise "Game over! #{active_player.name} wins!" if grid.win?
+    raise "Game over, it's a draw!" if grid.full?
     change_turn
   end
 
