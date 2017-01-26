@@ -9,4 +9,10 @@ describe Game do
     expect(game.player_1).to eq player_1
   end
 
+  it "players take turns until game is over" do
+    allow(player_1).to receive(:play)
+    game.play
+    expect(game.active_player).to eq player_2
+  end
+
 end
