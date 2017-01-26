@@ -13,6 +13,7 @@ class Game
 
   def play(params)
     grid.change_field(params) unless grid.field_taken?(params)
+    raise "Game over! #{active_player.name} wins!" if grid.win?
     change_turn
   end
 
