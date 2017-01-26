@@ -7,6 +7,10 @@ class TicTacToeGrid
     @grid = [a, b, c]
   end
 
+  def change_field(row, column, value)
+    (self.send(row))[column] = value
+  end
+
   private
   attr_accessor :a, :b, :c
 end
