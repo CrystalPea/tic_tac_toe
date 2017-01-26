@@ -9,7 +9,7 @@ describe TicTacToeGrid do
   end
 
   it "allows field property to be changed" do
-    tictactoe.change_field(:a, 0, :x)
+    tictactoe.change_field({row: :a, column: 0, value: :x})
     grid = [[:x, nil, nil], [nil, nil, nil], [nil, nil, nil]]
     expect(tictactoe.grid).to eq grid
   end

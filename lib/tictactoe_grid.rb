@@ -7,8 +7,8 @@ class TicTacToeGrid
     @grid = [a, b, c]
   end
 
-  def change_field(row, column, value)
-    (self.send(row))[column] = value
+  def change_field(params)
+    (self.send(params[:row]))[params[:column]] = params[:value]
   end
 
   private

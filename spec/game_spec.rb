@@ -16,4 +16,8 @@ describe Game do
     expect(game.active_player).to eq player_2
   end
 
+  it "lets active player take a field" do
+      allow(player_1).to receive(:play) { {row: :a, column: 0, value: :x} }
+  end
+
 end
