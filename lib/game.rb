@@ -1,27 +1,27 @@
-require_relative "tictactoe_grid"
+require_relative "board"
 require_relative "player"
 
 class Game
-  attr_reader :player_1, :player_2, :active_player, :grid
+  attr_reader :player_1, :player_2, :active_player, :board
 
-  def initialize(player1, player2, grid)
+  def initialize(player1, player2, board)
     @player_1 = player1
     @player_2 = player2
     @active_player = player_1
-    @grid = grid
+    @board = board
   end
 
   def play(params)
-    return "This field is taken" if grid.field_taken?(params)
+    return "This field is taken" if board.field_taken?(params)
     assign_value(params)
-    grid.change_field(params)
-    raise "Game over! #{active_player.name} wins!" if grid.win?
-    raise "Game over, it's a draw!" if grid.full?
+    board.change_field(params)
+    raise "Game over! #{active_player.name} wins!" if board.win?
+    raise "Game over, it's a draw!" if board.full?
     change_turn
   end
 
   private
-  attr_writer :player_1, :player_2, :active_player, :grid
+  attr_writer :player_1, :player_2, :active_player, :board
 
   def assign_value(params)
     if @active_player == player_1

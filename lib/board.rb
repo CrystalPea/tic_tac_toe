@@ -1,4 +1,4 @@
-class TicTacToeGrid
+class Board
   attr_reader :grid
   def initialize
     @a = [nil, nil, nil]
