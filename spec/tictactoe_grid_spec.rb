@@ -14,4 +14,9 @@ describe TicTacToeGrid do
     expect(tictactoe.grid).to eq grid
   end
 
+  it "checks if the field is taken" do
+    tictactoe.change_field({row: :a, column: 0, value: :x})
+    expect(tictactoe.field_taken?({row: :a, column: 0, value: :x})).to eq true
+  end
+
 end

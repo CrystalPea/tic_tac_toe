@@ -11,6 +11,10 @@ class TicTacToeGrid
     (self.send(params[:row]))[params[:column]] = params[:value]
   end
 
+  def field_taken?(params)
+    (self.send(params[:row]))[params[:column]] != nil
+  end
+
   private
   attr_accessor :a, :b, :c
 end
