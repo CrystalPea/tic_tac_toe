@@ -16,14 +16,23 @@ class TicTacToeGrid
   end
 
   def win?
-    grid.each {|row| return true if row.uniq.count == 1 && row[0] != nil }
-    sideways = [[], [], []]
-    grid.each {|row| sideways[0] << row[0]; sideways[1] << row[1]; sideways[2] << row[2] }
-    sideways.each {|row| return true if row.uniq.count == 1 && row[0] != nil }
-
+    return true if horizontal_win?
+    return true if vertical_win?
     false
   end
 
   private
   attr_accessor :a, :b, :c
+
+  def horizontal_win?
+    grid.each {|row| return true if row.uniq.count == 1 && row[0] != nil }
+    false
+  end
+
+  def vertical_win?
+    sideways = [[], [], []]
+    grid.each {|row| sideways[0] << row[0]; sideways[1] << row[1]; sideways[2] << row[2] }
+    sideways.each {|row| return true if row.uniq.count == 1 && row[0] != nil }
+    false
+  end
 end
