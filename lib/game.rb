@@ -13,6 +13,10 @@ class Game
 
   def play(params)
     return "This field is taken" if grid.field_taken?(params)
+    if @active_player == player_1
+      params[:value] = :x
+    else params[:value] = :o
+    end
     grid.change_field(params)
     raise "Game over! #{active_player.name} wins!" if grid.win?
     change_turn

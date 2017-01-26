@@ -9,6 +9,6 @@ describe Player do
   end
 
   it "can play" do
-    expect(player.play("A", "0", "X")).to eq({row: :a, column: 0, value: :x})
+    expect(player.play("A", "0")).to eq({row: :a, column: 0})
   end
 end
