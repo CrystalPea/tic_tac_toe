@@ -37,6 +37,13 @@ describe TicTacToeGrid do
       expect(tictactoe.win?).to eq true
     end
 
+    it "checks for diagonal wins" do
+      tictactoe.change_field({row: :a, column: 0, value: :x})
+      tictactoe.change_field({row: :b, column: 1, value: :x})
+      tictactoe.change_field({row: :c, column: 2, value: :x})
+      expect(tictactoe.win?).to eq true
+    end
+
   end
 
 end
