@@ -1,8 +1,8 @@
-# A Tic Tac Toe Tech Test!
+## A Tic Tac Toe Tech Test!
 
 This is a very common tech test as it demonstrates a candidate's knowledge of basic data structures. Done individually as a part of Makers Academy web development course.
 
-## The brief
+### The brief
 
 The rules of tic-tac-toe are as follows:
 
@@ -15,3 +15,27 @@ The rules of tic-tac-toe are as follows:
 * A game is over when all fields are taken
 
 Build the business logic for a game of tic tac toe. It should be easy to implement a working game of tic tac toe by combining your code with any user interface, whether web or command line.
+
+### How to run:
+
+- clone/download this repo  
+- open a REPL (e.g.: irb or pry)  
+- to start a game, type in:  
+```ruby
+require './lib/game'
+game = Game.new(Player.new("some_name"), Player.new("other_name"), Board.new)
+```
+- to make a move (rows = A/B/C, columns=0/1/2):  
+```ruby
+game.play(game.active_player.play("row", column))
+```
+- to check the grid:
+```ruby
+game.board.grid
+```
+- to run tests:   
+```ruby
+rspec
+```
+
+Thank you for your time! :)
