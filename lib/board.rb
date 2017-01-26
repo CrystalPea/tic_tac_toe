@@ -27,6 +27,10 @@ class Board
     true
   end
 
+  def no_such_field?(params)
+    (1..3).member?(params[:column])
+  end
+
   private
   attr_accessor :a, :b, :c
 

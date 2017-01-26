@@ -60,4 +60,8 @@ describe Board do
       expect(board.full?).to eq true
     end
   end
+
+  it "checks for non-existent fields" do
+    expect(board.no_such_field?({row: :c, column: 3})).to eq true
+  end
 end
