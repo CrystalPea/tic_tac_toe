@@ -13,6 +13,7 @@ describe Game do
   it "players take turns until game is over" do
     params = {row: :a, column: 0, value: :x}
     allow(board).to receive(:field_taken?).with(params) { false }
+    allow(board).to receive(:no_such_field?).with(params) { false }
     allow(board).to receive(:change_field).with(params)
     allow(board).to receive(:win?) { false }
     allow(board).to receive(:full?) { false }
@@ -23,6 +24,7 @@ describe Game do
   it "lets active player take a field" do
     params = {row: :a, column: 0, value: :x}
     allow(board).to receive(:field_taken?).with(params) { false }
+    allow(board).to receive(:no_such_field?).with(params) { false }
     expect(board).to receive(:change_field).with(params)
     allow(board).to receive(:win?) { false }
     allow(board).to receive(:full?) { false }
@@ -41,6 +43,7 @@ describe Game do
   it "ends when active player wins" do
     params = {row: :a, column: 0, value: :x}
     allow(board).to receive(:field_taken?).with(params) { false }
+    allow(board).to receive(:no_such_field?).with(params) { false }
     allow(board).to receive(:change_field).with(params)
     allow(board).to receive(:win?) { true }
     expect { game.play(params) }.to raise_exception("Game over! player_1 wins!")
@@ -49,10 +52,18 @@ describe Game do
   it "ends when board full" do
     params = {row: :a, column: 0, value: :x}
     allow(board).to receive(:field_taken?).with(params) { false }
+    allow(board).to receive(:no_such_field?).with(params) { false }
     allow(board).to receive(:change_field).with(params)
     allow(board).to receive(:win?) { false }
     allow(board).to receive(:full?) { true }
     expect { game.play(params) }.to raise_exception("Game over, it's a draw!")
+  end
+
+  it "does not allow values outside the board scope" do
+    params = {row: :a, column: 3, value: :x}
+    allow(board).to receive(:field_taken?).with(params) { false }
+    allow(board).to receive(:no_such_field?).with(params) { true }
+    expect(game.play(params)).to eq "No cheating!"
   end
 
 end

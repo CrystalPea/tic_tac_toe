@@ -8,7 +8,11 @@ describe Player do
     expect(player.name).to eq player_1
   end
 
-  it "can play" do
-    expect(player.play("A", "0")).to eq({row: :a, column: 0})
+  describe "#play" do
+    it "can play" do
+      expect(player.play("A", "0")).to eq({row: :a, column: 0})
+    end
   end
+
+
 end
