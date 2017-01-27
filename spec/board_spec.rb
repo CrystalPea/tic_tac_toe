@@ -8,15 +8,17 @@ describe Board do
     expect(board.grid).to eq grid
   end
 
-  it "allows field property to be changed" do
-    board.change_field({row: :a, column: 0, value: :x})
-    grid = [[:x, nil, nil], [nil, nil, nil], [nil, nil, nil]]
-    expect(board.grid).to eq grid
-  end
+  describe "#change_field" do
+    it "allows field property to be changed" do
+      board.change_field({row: :a, column: 0, value: :x})
+      grid = [[:x, nil, nil], [nil, nil, nil], [nil, nil, nil]]
+      expect(board.grid).to eq grid
+    end
 
-  it "checks if the field is taken" do
-    board.change_field({row: :a, column: 0, value: :x})
-    expect(board.field_taken?({row: :a, column: 0, value: :x})).to eq true
+    it "checks if the field is taken" do
+      board.change_field({row: :a, column: 0, value: :x})
+      expect(board.field_taken?({row: :a, column: 0, value: :x})).to eq true
+    end
   end
 
   describe "#win?" do
