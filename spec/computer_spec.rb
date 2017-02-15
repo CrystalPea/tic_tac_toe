@@ -21,5 +21,10 @@ describe Computer do
     allow(board).to receive(:empty?) { false }
     expect(computer.board_empty?(board)).to eq false
   end
+  it "makes a move in one of the corners or centre if board empty" do
+    allow(board).to receive(:empty?) { true }
+    good_first_moves = [{row: :a, column: 0}, {row: :a, column: 2}, {row: :b, column: 1}, {row: :c, column: 0}, {row: :c, column: 2}]
+    expect(good_first_moves).to include(computer.make_move) 
+  end
 end
 
