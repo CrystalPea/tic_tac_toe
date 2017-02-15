@@ -28,7 +28,7 @@ class Board
   end
 
   def empty?
-    grid.each {|row| return false if row.include?(:x) || row.include?(:o) }
+    grid.each {|row| return false if row_not_empty?(row) }
     true
   end
 
@@ -38,6 +38,9 @@ class Board
 
   private
   attr_accessor :a, :b, :c
+  def row_not_empty?(row)
+    row.include?(:x) || row.include?(:o)
+  end
 
   def horizontal_win?
     grid.each {|row| return true if winning_row?(row) }
