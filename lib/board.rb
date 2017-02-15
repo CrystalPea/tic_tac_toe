@@ -23,7 +23,7 @@ class Board
   end
 
   def full?
-    grid.each {|row| return false if row.include?(nil) }
+    grid.each {|row| return false if row_not_full?(row) }
     true
   end
 
@@ -40,6 +40,10 @@ class Board
   attr_accessor :a, :b, :c
   def row_not_empty?(row)
     row.include?(:x) || row.include?(:o)
+  end
+
+  def row_not_full?(row)
+    row.include?(nil)
   end
 
   def horizontal_win?
