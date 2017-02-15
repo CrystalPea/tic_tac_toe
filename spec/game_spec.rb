@@ -12,10 +12,13 @@ describe Game do
 
   describe "#play" do
     context "#game flow" do
-      it "players take turns until game is over" do
-        params = {row: :a, column: 0, value: :x}
+      let(:params) { ({row: :a, column: 0, value: :x}) }
+      before do
         allow(board).to receive(:field_taken?).with(params) { false }
         allow(board).to receive(:field_exists?).with(params) { true }
+      end
+
+      it "players take turns until game is over" do
         allow(board).to receive(:change_field).with(params)
         allow(board).to receive(:win?) { false }
         allow(board).to receive(:full?) { false }
@@ -24,9 +27,6 @@ describe Game do
       end
 
       it "lets active player take a field" do
-        params = {row: :a, column: 0, value: :x}
-        allow(board).to receive(:field_taken?).with(params) { false }
-        allow(board).to receive(:field_exists?).with(params) { true }
         expect(board).to receive(:change_field).with(params)
         allow(board).to receive(:win?) { false }
         allow(board).to receive(:full?) { false }
@@ -53,20 +53,19 @@ describe Game do
   end
 
   describe "#game_over?" do
-    it "ends when active player wins" do
-      params = {row: :a, column: 0, value: :x}
+    let(:params) { ({row: :a, column: 0, value: :x}) }
+    before do
       allow(board).to receive(:field_taken?).with(params) { false }
       allow(board).to receive(:field_exists?).with(params) { true }
       allow(board).to receive(:change_field).with(params)
+    end
+
+    it "ends when active player wins" do
       allow(board).to receive(:win?) { true }
       expect { game.play(params) }.to raise_error("Game over! player_1 wins!")
     end
 
     it "ends when board full" do
-      params = {row: :a, column: 0, value: :x}
-      allow(board).to receive(:field_taken?).with(params) { false }
-      allow(board).to receive(:field_exists?).with(params) { true }
-      allow(board).to receive(:change_field).with(params)
       allow(board).to receive(:win?) { false }
       allow(board).to receive(:full?) { true }
       expect { game.play(params) }.to raise_error("Game over, it's a draw!")
