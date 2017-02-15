@@ -17,5 +17,9 @@ describe Computer do
     allow(board).to receive(:empty?) { true }
     expect(computer.board_empty?(board)).to eq true
   end
+  it "knows if the board not empty" do
+    allow(board).to receive(:empty?) { false }
+    expect(computer.board_empty?(board)).to eq false
+  end
 end
 
