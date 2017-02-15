@@ -10,7 +10,8 @@ describe Player do
 
   describe "#play" do
     it "can play" do
-      expect(player.play("A", "0")).to eq({row: :a, column: 0})
+      hash = {row: "A", column: "0"}
+      expect(player.play(hash)).to eq({row: :a, column: 0})
     end
   end
 

@@ -5,8 +5,8 @@ class Player
     @name = name
   end
 
-  def play(row, column)
-    {row: row.downcase.to_sym,
-     column: column.to_i}
+  def play(hash)
+    { row: hash[:row].downcase.to_sym,
+     column: hash[:column].to_i}
   end
 end
