@@ -66,6 +66,11 @@ describe Board do
     end
   end
 
+  describe "#empty?" do
+    it "returns true if board empty" do
+      expect(board.empty?).to eq true
+    end
+  end
   it "checks for non-existent fields" do
     expect(board.field_exists?({row: :c, column: 3})).to eq false
   end

@@ -27,6 +27,10 @@ class Board
     true
   end
 
+  def empty?
+    true
+  end
+
   def field_exists?(params)
     (0..2).member?(params[:column])
   end
