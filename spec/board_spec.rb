@@ -33,16 +33,18 @@ describe Board do
     end
 
     it "checks for vertical wins" do
-      board.change_field({row: :b, column: 1, value: :x})
-      board.change_field({row: :a, column: 1, value: :x})
-      board.change_field({row: :c, column: 1, value: :x})
+      [:a,:b,:c].each do |row|
+        board.change_field({row: row, column: 1, value: :x})
+      end
       expect(board.win?).to eq true
     end
 
     it "checks for diagonal wins" do
-      board.change_field({row: :a, column: 0, value: :x})
-      board.change_field({row: :b, column: 1, value: :x})
-      board.change_field({row: :c, column: 2, value: :x})
+      n = 0
+      [:a,:b,:c].each do |row|
+        board.change_field({row: row, column: n, value: :x})
+        n += 1
+      end
       expect(board.win?).to eq true
     end
   end
@@ -53,12 +55,13 @@ describe Board do
     end
 
     it "returns true if board is full" do
-      n = 0
-      3.times { board.change_field({row: :a, column: n, value: :x}); n += 1 }
-      n = 0
-      3.times { board.change_field({row: :b, column: n, value: :x}); n += 1 }
-      n = 0
-      3.times { board.change_field({row: :c, column: n, value: :x}); n += 1 }
+      [:a,:b,:c].each do |row|
+        n = 0
+        3.times do
+           board.change_field({row: row, column: n, value: :x})
+           n += 1
+        end
+      end
       expect(board.full?).to eq true
     end
   end
