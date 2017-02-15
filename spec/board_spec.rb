@@ -70,6 +70,14 @@ describe Board do
     it "returns true if board empty" do
       expect(board.empty?).to eq true
     end
+    it "returns false if board not empty" do
+     board.change_field({row: :a, column: 0, value: :x}) 
+     expect(board.empty?).to eq false
+    end
+    it "returns false if :o made a move" do
+     board.change_field({row: :a, column: 0, value: :o})
+     expect(board.empty?).to eq false
+    end
   end
   it "checks for non-existent fields" do
     expect(board.field_exists?({row: :c, column: 3})).to eq false

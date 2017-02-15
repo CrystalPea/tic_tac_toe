@@ -28,6 +28,7 @@ class Board
   end
 
   def empty?
+    grid.each {|row| return false if row.include?(:x) || row.include?(:o) }
     true
   end
 
