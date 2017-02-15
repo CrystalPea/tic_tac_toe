@@ -4,11 +4,11 @@ require_relative "player"
 class Game
   attr_reader :player_1, :player_2, :active_player, :board
 
-  def initialize(player1, player2, board)
-    @player_1 = player1
-    @player_2 = player2
+  def initialize(hash)
+    @player_1 = hash[:player_1]
+    @player_2 = hash[:player_2]
     @active_player = player_1
-    @board = board
+    @board = hash[:board]
   end
 
   def play(params)
