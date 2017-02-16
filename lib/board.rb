@@ -28,8 +28,7 @@ class Board
   end
 
   def empty?
-    grid.each {|row| return false if row_not_empty?(row) }
-    true
+    grid.flatten.uniq.count == 1 && grid.flatten.uniq == [nil]
   end
 
   def field_exists?(params)
@@ -38,9 +37,6 @@ class Board
 
   private
   attr_accessor :a, :b, :c
-  def row_not_empty?(row)
-    row.include?(:x) || row.include?(:o)
-  end
 
   def row_not_full?(row)
     row.include?(nil)
