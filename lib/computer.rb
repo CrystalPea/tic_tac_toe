@@ -32,6 +32,16 @@ class Computer < Player
     if row = danger_in_column?(sideways)
       return {row: ROWS[row.index(nil)], column: sideways.index(row) }
     end
+    axis_1 = [board.grid[0][0], board.grid[1][1], board.grid[2][2]]
+    return {row: ROWS[axis_1.index(nil)], column: axis_1.index(nil)} if axis_1.count(opponent) == 2
+    axis_2 = [board.grid[2][0], board.grid[1][1], board.grid[0][2]]
+    return {row: ROWS[calculate_index(axis_2)] , column: axis_2.index(nil)} if axis_2.count(opponent) == 2
+  end
+
+  def calculate_index(axis_2)
+    return 2 if axis_2.index(nil) == 0
+    return 0 if axis_2.index(nil) == 2
+    1
   end
   
   def danger_in_row?(board)

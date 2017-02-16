@@ -59,6 +59,20 @@ describe Computer do
         allow(board).to receive(:grid) { [[:x, nil, nil], [:x, nil, nil], [nil, nil, nil]] }
         expect(computer.make_move(board)).to eq({row: :c, column: 0})
       end
+      it "prevents opponent from getting a diagonal win - axis_1" do
+        allow(board).to receive(:empty?) { false }
+        allow(board).to receive(:unique_elements_number) { 2 }
+        allow(board).to receive(:grid) { [[:x, nil, nil], [nil, :x, nil], [nil, nil, nil]] }
+        expect(computer.make_move(board)).to eq({row: :c, column: 2})
+      end
+
+      it "prevents opponent from getting a diagonal win - axis_2" do
+        allow(board).to receive(:empty?) { false }
+        allow(board).to receive(:unique_elements_number) { 2 }
+        allow(board).to receive(:grid) { [[nil, nil, :x], [nil, :x, nil], [nil, nil, nil]] }
+        expect(computer.make_move(board)).to eq({row: :c, column: 0})
+      end
+      
     end
   end
 end
