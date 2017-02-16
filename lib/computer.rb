@@ -25,6 +25,11 @@ class Computer < Player
   
   def choose_best_move(board)
     rows = [:a, :b, :c]
+    #danger_in_row?
     board.grid.each { |row| return {row: rows[board.grid.index(row)], column: row.index(nil)} if row.count(opponent) == 2 }
+    #danger_in_column?
+    sideways = [[], [], []]
+    board.grid.each {|row| sideways[0] << row[0]; sideways[1] << row[1]; sideways[2] << row[2] }
+    sideways.each {|row| return {row: rows[row.index(nil)], column: sideways.index(row) } if row.count(opponent) == 2 }
   end
 end

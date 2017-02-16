@@ -52,6 +52,13 @@ describe Computer do
         computer.make_move(board)
         expect(computer.my_value).to eq :o
       end
+      
+      it "prevents opponent from getting a winning column" do
+        allow(board).to receive(:empty?) { false }
+        allow(board).to receive(:unique_elements_number) { 2 }
+        allow(board).to receive(:grid) { [[:x, nil, nil], [:x, nil, nil], [nil, nil, nil]] }
+        expect(computer.make_move(board)).to eq({row: :c, column: 0})
+      end
     end
   end
 end
