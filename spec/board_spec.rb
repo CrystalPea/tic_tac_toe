@@ -82,4 +82,8 @@ describe Board do
   it "checks for non-existent fields" do
     expect(board.field_exists?({row: :c, column: 3})).to eq false
   end
+
+  it "calculates number of unique elements on the board" do
+    expect(board.unique_elements_number).to eq 1
+  end
 end

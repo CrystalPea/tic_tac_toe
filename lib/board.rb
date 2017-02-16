@@ -28,11 +28,15 @@ class Board
   end
 
   def empty?
-    grid.flatten.uniq.count == 1 && grid.flatten.uniq == [nil]
+    unique_elements_number == 1 && grid.flatten.uniq == [nil]
   end
 
   def field_exists?(params)
     (0..2).member?(params[:column])
+  end
+
+  def unique_elements_number
+    grid.flatten.uniq.count
   end
 
   private
